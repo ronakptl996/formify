@@ -1,135 +1,126 @@
-# Turborepo starter
+# Formify 🌌
 
-This Turborepo starter is maintained by the Turborepo core team.
+Welcome to **Formify**, a production-style, high-fidelity Typeform-style Form Builder SaaS monorepo. It features drag-free creator form builders, visual spreadsheet response analytics, customizable interactive themes, simulated transactional email notifications, and fully-interactive Scalar API developer sandboxes.
 
-## Using this example
+---
 
-Run the following command:
+## 🛠️ Tech Stack
 
-```sh
-npx create-turbo@latest
-```
+Formify is architected inside a type-safe Turborepo monorepo using standard industry practices:
 
-## What's inside?
+- **Monorepo Engine**: [Turborepo](https://turbo.build/)
+- **Frontend**: [Next.js 16 (App Router)](https://nextjs.org/) styled with Vanilla CSS and modern dark Obsidian theme aesthetics.
+- **API Framework**: [tRPC v11](https://trpc.io/) for end-to-end type safety, integrated with [Express](https://expressjs.com/).
+- **Database & ORM**: [PostgreSQL](https://www.postgresql.org/) with [Drizzle ORM](https://orm.drizzle.team/).
+- **Validation**: [Zod](https://zod.dev/) schemas.
+- **API Documentation**: [Scalar API Reference](https://scalar.com/) with automated OpenAPI JSON generation.
 
-This Turborepo includes the following packages/apps:
+---
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 📂 Project Architecture
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+├── apps
+│   ├── api                 # Express API server hosting tRPC & Scalar documentation
+│   └── web                 # Next.js frontend with creator builder & analytics
+├── packages
+│   ├── database            # PostgreSQL models, Drizzle schemas, migrations & seed scripts
+│   ├── services            # Authentication & third-party service abstractions
+│   ├── trpc                # Core tRPC routers, server contexts & procedurals
+│   ├── typescript-config   # Workspace typescript configuration shares
+│   └── eslint-config       # Lint configuration shares
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+## 🚀 Setting Up the Project
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+Follow these simple steps to spin up the local development environment:
 
-### Develop
+### 1. Configure the Environment
 
-To develop all apps and packages, run the following command:
+The workspace uses a single master environment file. Create a `.env` file at the root:
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```bash
+DATABASE_URL=postgresql://postgres:root@localhost:5432/formbuilder
+PORT=8000
+NODE_ENV=development
+BASE_URL=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 2. Install Workspace Dependencies
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+```bash
+pnpm install
 ```
 
-### Remote Caching
+### 3. Setup the Database & Run Seeder
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Make sure PostgreSQL is running locally on port 5432 (default credentials match the env URL). Then execute:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+```bash
+# Generate schemas
+pnpm db:generate
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+# Execute migrations
+pnpm db:migrate
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Populate pre-seeded demo user and simulated forms/responses
+pnpm db:seed
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 4. Boot Development Servers
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Launch both the frontend client and backend API server simultaneously:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+```bash
+pnpm dev
 ```
 
-## Useful Links
+- **Client App**: `http://localhost:3000`
+- **Express API Backend**: `http://localhost:8000`
+- **Interactive API Reference (Scalar)**: `http://localhost:8000/docs`
 
-Learn more about the power of Turborepo:
+---
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## 👤 Seeded Demo Credentials
+
+Skip manual registration and test all high-fidelity creator analytics pages instantly with these seeded credentials:
+
+- **Email**: `admin@formify.com`
+- **Password**: `password123`
+- **Developer API Key**: `formify_demo_api_key_2026_ninja`
+
+---
+
+## 🌐 Calling the backend API via curl
+
+Because the monorepo mounts standard tRPC endpoints under `/trpc` and clean REST OpenAPI endpoints under `/api`, utilize the correct prefixes based on your query format:
+
+### A. Calling via standard tRPC Protocol
+
+Pass queries directly using the `/trpc/` prefix:
+
+```bash
+curl 'http://localhost:8000/trpc/form.listPublicForms'
+```
+
+### B. Calling via standard REST OpenAPI
+
+Query formatted endpoints directly using the `/api/` prefix:
+
+```bash
+curl 'http://localhost:8000/api/forms/explore'
+```
+
+---
+
+## 🎨 Creative Theme Presets
+
+Formify includes dynamic styling and responsive design tokens that render immersive interfaces instantly inside the browser:
+
+- **Cyberpunk**: Neon grids, high-contrast cyan-to-purple borders.
+- **Anime Sunset**: Cherry-sunset gradients, warm fonts, and rounded pill inputs.
+- **Retro Mac**: Classic system-gray borders, monospaced fonts, and block button shadows.
+- **Startup Dark**: Slate glassmorphism panels, glowing borders, and clean typography.
