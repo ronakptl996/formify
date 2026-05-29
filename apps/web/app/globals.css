@@ -121,3 +121,173 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ==========================================================================
+   CREATIVE DYNAMIC FORM THEMES (FORMIFY)
+   ========================================================================== */
+
+/* 1. CYBERPUNK (Futuristic, Neon High Contrast) */
+.theme-cyberpunk {
+  --background: #080a0f !important;
+  --foreground: #00ffcc !important;
+  --card: #0f131a !important;
+  --card-foreground: #00ffcc !important;
+  --border: #ff0055 !important;
+  --primary: #ff0055 !important;
+  --primary-foreground: #080a0f !important;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+.theme-cyberpunk input, 
+.theme-cyberpunk select, 
+.theme-cyberpunk textarea {
+  border: 2px solid #ff0055 !important;
+  border-radius: 0px !important;
+  background-color: #0f131a !important;
+  color: #00ffcc !important;
+  text-shadow: 0 0 5px #00ffcc;
+}
+.theme-cyberpunk button.theme-btn {
+  background-color: #ff0055 !important;
+  color: #080a0f !important;
+  border: none !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  box-shadow: 0px 0px 10px #ff0055 !important;
+  border-radius: 0px !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.theme-cyberpunk button.theme-btn:hover {
+  background-color: #00ffcc !important;
+  box-shadow: 0px 0px 15px #00ffcc !important;
+}
+
+/* 2. ANIME SUNSET (Dreamy warm orange-purple gradients) */
+.theme-anime-sunset {
+  background: linear-gradient(135deg, #1b0a2a 0%, #3c1228 50%, #612224 100%) !important;
+  --background: #1b0a2a !important;
+  --foreground: #ffd54f !important;
+  --card: rgba(60, 18, 40, 0.45) !important;
+  --card-foreground: #ffffff !important;
+  --border: #ff7043 !important;
+  --primary: #ff7043 !important;
+  --primary-foreground: #ffffff !important;
+  backdrop-filter: blur(10px);
+}
+.theme-anime-sunset input, 
+.theme-anime-sunset select, 
+.theme-anime-sunset textarea {
+  border: 1px solid #ff7043 !important;
+  border-radius: 8px !important;
+  background-color: rgba(27, 10, 42, 0.6) !important;
+  color: #ffffff !important;
+}
+.theme-anime-sunset button.theme-btn {
+  background: linear-gradient(90deg, #ff7043 0%, #ffb74d 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  transition: transform 0.2s ease-in-out !important;
+}
+.theme-anime-sunset button.theme-btn:hover {
+  transform: scale(1.05) !important;
+}
+
+/* 3. RETRO MAC (Classic OS double-border 90s greyscale) */
+.theme-retro-mac {
+  background-color: #aeaeae !important;
+  --background: #aeaeae !important;
+  --foreground: #000000 !important;
+  --card: #ffffff !important;
+  --card-foreground: #000000 !important;
+  --border: #000000 !important;
+  --primary: #000000 !important;
+  --primary-foreground: #ffffff !important;
+  font-family: 'Courier New', monospace !important;
+}
+.theme-retro-mac .theme-card {
+  border: 3px double #000000 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+  border-radius: 0px !important;
+}
+.theme-retro-mac input, 
+.theme-retro-mac select, 
+.theme-retro-mac textarea {
+  border: 2px solid #000000 !important;
+  border-radius: 0px !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+.theme-retro-mac button.theme-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+  border-radius: 0px !important;
+  font-weight: bold !important;
+}
+.theme-retro-mac button.theme-btn:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  transform: translate(3px, 3px) !important;
+}
+
+/* 4. STARTUP DARK (Clean Obsidian & Neon Emerald) */
+.theme-startup-dark {
+  --background: #030712 !important;
+  --foreground: #f3f4f6 !important;
+  --card: #111827 !important;
+  --card-foreground: #f9fafb !important;
+  --border: #374151 !important;
+  --primary: #10b981 !important;
+  --primary-foreground: #042f2e !important;
+}
+.theme-startup-dark input, 
+.theme-startup-dark select, 
+.theme-startup-dark textarea {
+  border: 1px solid #374151 !important;
+  background-color: #0f172a !important;
+  color: #f9fafb !important;
+}
+.theme-startup-dark button.theme-btn {
+  background-color: #10b981 !important;
+  color: #022c22 !important;
+  font-weight: 600 !important;
+}
+.theme-startup-dark button.theme-btn:hover {
+  background-color: #34d399 !important;
+}
+
+/* 5. SYNTHWAVE (Retro grid, Deep Purple & Neon Hot Pink) */
+.theme-synthwave {
+  background: radial-gradient(circle, #220b45 0%, #0d0124 100%) !important;
+  --background: #0d0124 !important;
+  --foreground: #ff007f !important;
+  --card: rgba(21, 2, 58, 0.7) !important;
+  --card-foreground: #38bdf8 !important;
+  --border: #ff007f !important;
+  --primary: #ff007f !important;
+  --primary-foreground: #ffffff !important;
+  text-shadow: 0 0 2px rgba(255, 0, 127, 0.4);
+}
+.theme-synthwave input, 
+.theme-synthwave select, 
+.theme-synthwave textarea {
+  border: 2px solid #ff007f !important;
+  border-radius: 9999px !important;
+  background-color: #18053e !important;
+  color: #38bdf8 !important;
+}
+.theme-synthwave button.theme-btn {
+  background-color: #ff007f !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  font-weight: 800 !important;
+  box-shadow: 0px 0px 15px #ff007f !important;
+}
+.theme-synthwave button.theme-btn:hover {
+  background-color: #38bdf8 !important;
+  box-shadow: 0px 0px 20px #38bdf8 !important;
+  color: #0d0124 !important;
+}
+

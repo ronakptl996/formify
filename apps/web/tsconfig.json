@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"]
+      "~/*": ["./*"],
+      "@repo/database": ["../../packages/database"],
+      "@repo/trpc/*": ["../../packages/trpc/*"]
     },
     "plugins": [
       {
