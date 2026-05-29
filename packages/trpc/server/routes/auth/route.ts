@@ -202,7 +202,6 @@ export const authRouter = router({
 
   logout: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/auth/logout", tags: TAGS } })
-    .input(z.undefined())
     .output(z.object({ success: z.boolean() }))
     .mutation(async ({ ctx }) => {
       if (ctx.sessionToken) {
